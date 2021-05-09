@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<html>
+	<head>
+		<meta charset="utf-8" />
+		
+	
+		
+		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+		
+		<script type="text/javascript">
+		
+			var numer = Math.floor(Math.random()*5)+1;
+			
+			var timer1 = 0;
+			var timer2 = 0;
+			
+			function ustawslajd(nrslajdu)
+			{
+				clearTimeout(timer1);
+				clearTimeout(timer2);
+				numer = nrslajdu - 1;
+				
+				schowaj();
+				setTimeout("zmienslajd()", 500);
+				
+			}
+			
+			function schowaj()
+			{
+				$("#slider").fadeOut(500);
+				$("#description").fadeOut(500);
+				$("#description").fadeIn(400);
+			}
+		
+			function zmienslajd()
+			{
+				
+				numer++; 
+				
+				if (numer>5) numer=1;
+				
+				var plik = "<img src=\"slajdy/slajd" + numer + ".png\" />";
+				
+				document.getElementById("slider").innerHTML = plik;
+				
+				var opis1 = '„Nasz ulubiony” domek „Oscypek” z widokiem na źródła rzeki Tanew.';
+				var opis2 = "Piękne pola kwitnącego rzepaku na roztoczańskich wzniesieniach.";
+				var opis3 = "Roztocze - określenie to wywodzi się od gwarowego słowa roztoka, oznaczającego dział wodny.";
+				var opis4 = "Stare Brusno nieistniejąca wieś, mieszkańcy zajmowali się kamieniarstwem.";
+				var opis5 = "Okoliczne wsie Narola - stare zabudowania gospodarskie.";
+				
+				if(numer ==1)
+				document.getElementById("description").innerHTML = opis1;
+				else if(numer==2)
+				document.getElementById("description").innerHTML = opis2;
+				else if(numer==3)
+				document.getElementById("description").innerHTML = opis3;
+				else if(numer==4)
+				document.getElementById("description").innerHTML = opis4;
+				else if(numer==5)
+				document.getElementById("description").innerHTML = opis5;
+				
+				$("#slider").fadeIn(500);
+				
+				timer1 = setTimeout("zmienslajd()", 5000);
+				timer2 = setTimeout("schowaj()", 4500);
+			
+			}
+			
+		</script>
+		<link rel="stylesheet" href="style.css" type="text/css" />
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		
+	</head>
+	<body onload="zmienslajd()">
+	<div id="container">
+	<div id="menu">
+	Roztocze - wyjazd rowerowy „kwitnący rzepak” u Ordynata w Pizunach w namniejszej miejscowości w Polsce - maj 2017 
+	</div>
+	
+			<div id="menu">
+		<span onclick="ustawslajd(1)" style="cursor:pointer;">[ 1 ]</span>
+		<span onclick="ustawslajd(2)" style="cursor:pointer;">[ 2 ]</span>
+		<span onclick="ustawslajd(3)" style="cursor:pointer;">[ 3 ]</span>
+		<span onclick="ustawslajd(4)" style="cursor:pointer;">[ 4 ]</span>
+		<span onclick="ustawslajd(5)" style="cursor:pointer;">[ 5 ]</span>
+	</div>	
+
+		<div id="slider"></div>
+	<div id="description"></div>
+		</div>
+	</body>
+</html>
